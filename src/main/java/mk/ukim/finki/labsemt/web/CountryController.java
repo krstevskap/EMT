@@ -19,7 +19,7 @@ public class CountryController {
         this.countryService = countryService;
     }
 
-    @GetMapping("list-countries")
+    @GetMapping
     private List<Country> findAll() {
         return this.countryService.findAll();
     }
