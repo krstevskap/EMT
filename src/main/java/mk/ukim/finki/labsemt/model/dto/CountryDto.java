@@ -6,4 +6,8 @@ import lombok.Data;
 public class CountryDto {
     private String name;
     private String continent;
+
+    public CountryDto() {
+    }
+
 }
