@@ -3,6 +3,7 @@ package mk.ukim.finki.labsemt.service.impl;
 import mk.ukim.finki.labsemt.model.Author;
 import mk.ukim.finki.labsemt.model.Book;
 import mk.ukim.finki.labsemt.model.dto.BookDto;
+import mk.ukim.finki.labsemt.model.enumerations.Category;
 import mk.ukim.finki.labsemt.repository.BookRepository;
 import mk.ukim.finki.labsemt.service.AuthorService;
 import mk.ukim.finki.labsemt.service.BookService;
@@ -64,12 +65,32 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
+    public Book editBook(Long id, String name, Category category, Long authorId, Integer availableCopies) {
+        Book b = bookRepository.findById(id).orElse(null);
+
+        if(b==null)
+            return null;
+        Author a = authorService.findById(authorId);
+
+        if(a==null)
+            return null;
+
+        b.setName(name);
+        b.setCategory(category);
+        b.setAuthor(a);
+        b.setAvailableCopies(availableCopies);
+        return bookRepository.save(b);
+    }
+
+    @Override
     public void markAsTaken(Long id) {
         Book book = bookRepository.findById(id).orElse(null);
 
         if (book == null)
             return;
-        book.setAvailableCopies(book.getAvailableCopies() - 1);
+        if(book.getAvailableCopies()>0)
+            book.setAvailableCopies(book.getAvailableCopies() - 1);
+        else book.setAvailableCopies(0);
 
         bookRepository.save(book);
     }

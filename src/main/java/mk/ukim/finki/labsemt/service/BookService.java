@@ -1,6 +1,5 @@
 package mk.ukim.finki.labsemt.service;
 
-import mk.ukim.finki.labsemt.model.Author;
 import mk.ukim.finki.labsemt.model.Book;
 import mk.ukim.finki.labsemt.model.dto.BookDto;
 import mk.ukim.finki.labsemt.model.enumerations.Category;
@@ -13,5 +12,6 @@ public interface BookService {
     Book addBook(BookDto book);
     void deleteBook(Long id);
     Book editBook(Long id, BookDto book);
+    Book editBook(Long id, String name, Category category, Long authorId, Integer availableCopies);
     void markAsTaken(Long id);
 }

@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@CrossOrigin
+@CrossOrigin(origins = "http://localhost:3000")
 @RequestMapping("/api/books")
 public class BookController {
     private final BookService bookService;
@@ -18,7 +18,7 @@ public class BookController {
         this.bookService = bookService;
     }
 
-    @GetMapping("/list")
+    @GetMapping
     public List<Book> getAllBooks() {
         return bookService.findAll();
     }

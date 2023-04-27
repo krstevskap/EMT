@@ -1,8 +1,8 @@
 package mk.ukim.finki.labsemt.model.enumerations;
 
 public enum Category {
-    NOVEL,
     THRILLER,
+    NOVEL,
     HISTORY,
     FANTASY,
     BIOGRAPHY,
